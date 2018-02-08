@@ -48,7 +48,11 @@ class FlagsListViewController: UITableViewController {
         let flag = flags[indexPath.row]
         cell.textLabel?.text = flag.localizedName
         cell.detailTextLabel?.text = flag.countryCode
-        cell.imageView?.image = flag.image(style: style)
+        if #available(iOS 10.0, *) {
+            cell.imageView?.image = flag.image(style: style)
+        } else {
+            cell.imageView?.image = flag.originalImage
+        }
         
         return cell
     }
